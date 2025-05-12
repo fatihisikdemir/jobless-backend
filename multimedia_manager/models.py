@@ -7,7 +7,7 @@ from core.models import BaseModel
 
 class MediaFile(BaseModel):
     """
-        Clase que representar a un fichero de una imagen.
+        Clase que representa a un fichero de una imagen.
     """
     file = models.FileField(
         upload_to='media_files/',
