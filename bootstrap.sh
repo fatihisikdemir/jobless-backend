@@ -16,3 +16,6 @@ python manage.py migrate
 echo "👤 Creando usuarios administrativos y de prueba..."
 python manage.py seed_admin
 
+# 4. Ficheros estaticos
+echo "📂 Recopilando ficheros estáticos..."
+python manage.py collectstatic --noinput
