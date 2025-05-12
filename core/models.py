@@ -41,12 +41,12 @@ class BaseModel(models.Model):
     )
     fecha_creacion = models.DateTimeField(
         default=timezone.now,
-        help_text="Data de creació",
+        help_text="Fecha de creación",
         editable=False
     )
     fecha_modificacion = models.DateTimeField(
         auto_now=True,
-        help_text="Data de modificació",
+        help_text="Fecha de modificación",
         editable=False
     )
 
