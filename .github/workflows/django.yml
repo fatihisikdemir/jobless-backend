@@ -1,0 +1,44 @@
+name: 🧪 Django CI – Miseria verificada
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-backend:
+    name: 🔍 Verificar backend Django
+    runs-on: ubuntu-latest
+
+    steps:
+      # 📥 Clonar el repositorio
+      - name: ⬇️ Checkout del código
+        uses: actions/checkout@v3
+
+      # 🐍 Configurar Python
+      - name: 🐍 Usar Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      # 📦 Instalar dependencias
+      - name: 📦 Instalar requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # ✅ Validar errores de configuración en Django
+      - name: ✅ Ejecutar `check` de Django
+        run: |
+          python manage.py check
+
+      # 🧱 Aplicar migraciones sin romper nada
+      - name: 🧱 Ejecutar migraciones
+        run: |
+          python manage.py migrate --noinput
+
+      # (Opcional) 🧪 Agregar tests más adelante
+      # - name: 🔬 Correr tests
+      #   run: |
+      #     python manage.py test
