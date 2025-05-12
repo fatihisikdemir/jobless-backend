@@ -16,7 +16,7 @@ class DocumentFileSerializer(serializers.ModelSerializer):
     
 class MediaFileSerializer(serializers.ModelSerializer):
     """
-        Clase que representa a un serealización del Media file y devuelve las urls correspondiente con sus escalas.
+        Clase que representa a una serialización del Media file y devuelve las urls correspondientes con sus escalas.
     """
     image_for_pc_url = serializers.SerializerMethodField()
     image_for_tablet_url = serializers.SerializerMethodField()
