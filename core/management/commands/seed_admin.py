@@ -6,43 +6,49 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Superusuario
-        if not User.objects.filter(username='admin').exists():
-            User.objects.create_superuser(
-                username='admin',
-                email='admin@example.com',
-                password='admin123'
-            )
+        admin, created = User.objects.get_or_create(
+            username='admin',
+            defaults={
+                'email': 'admin@example.com',
+                'is_superuser': True,
+                'is_staff': True
+            }
+        )
+        if created:
+            admin.set_password('admin123')
+            admin.save()
             self.stdout.write(self.style.SUCCESS('🧠 Superusuario creado: admin / admin123'))
         else:
             self.stdout.write(self.style.WARNING('🧠 Superusuario ya existe: admin'))
 
         # Staff (no superuser)
-        if not User.objects.filter(username='staff').exists():
-            staff = User.objects.create_user(
-                username='staff',
-                email='staff@example.com',
-                password='staff123'
-            )
+        staff, created = User.objects.get_or_create(
+            username='staff',
+            defaults={'email': 'staff@example.com'}
+        )
+        if created:
+            staff.set_password('staff123')
             staff.is_staff = True
             staff.save()
             self.stdout.write(self.style.SUCCESS('👔 Usuario staff creado: staff / staff123'))
 
         # Usuario activo común
-        if not User.objects.filter(username='user').exists():
-            User.objects.create_user(
-                username='user',
-                email='user@example.com',
-                password='user123'
-            )
+        user, created = User.objects.get_or_create(
+            username='user',
+            defaults={'email': 'user@example.com'}
+        )
+        if created:
+            user.set_password('user123')
+            user.save()
             self.stdout.write(self.style.SUCCESS('🧍 Usuario común creado: user / user123'))
 
         # Usuario no activo
-        if not User.objects.filter(username='disabled').exists():
-            disabled = User.objects.create_user(
-                username='disabled',
-                email='disabled@example.com',
-                password='disabled123'
-            )
+        disabled, created = User.objects.get_or_create(
+            username='disabled',
+            defaults={'email': 'disabled@example.com'}
+        )
+        if created:
+            disabled.set_password('disabled123')
             disabled.is_active = False
             disabled.save()
             self.stdout.write(self.style.SUCCESS('🚫 Usuario desactivado creado: disabled / disabled123'))
