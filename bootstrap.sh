@@ -7,15 +7,17 @@ echo "-----------------------------------------------"
 # 1. Instalar dependencias
 echo "📦 Instalando dependencias..."
 pip install -r requirements.txt
-
-# 2. Aplicar migraciones
+# 2. Crear migraciones
+echo "🧱 Creando migraciones..."
+python manage.py makemigrations
+# 3. Aplicar migraciones
 echo "🧱 Aplicando migraciones..."
 python manage.py migrate
 
-# 3. Crear superusuario y usuarios de prueba
+# 4. Crear superusuario y usuarios de prueba
 echo "👤 Creando usuarios administrativos y de prueba..."
 python manage.py seed_admin
 
-# 4. Ficheros estaticos
+# 5. Ficheros estaticos
 echo "📂 Recopilando ficheros estáticos..."
 python manage.py collectstatic --noinput
