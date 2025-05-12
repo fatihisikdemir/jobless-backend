@@ -26,8 +26,11 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-!@#4$%^&*()_+')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+allowed_hosts = config('ALLOWED_HOSTS', default='*').split(',')
 
+ALLOWED_HOSTS = [
+    host.strip() for host in allowed_hosts if host.strip()  # Filtrar hosts vacíos
+]
 
 # Application definition
 
