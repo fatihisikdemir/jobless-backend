@@ -28,6 +28,8 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 
 allowed_hosts = config('ALLOWED_HOSTS', default='*').split(',')
 
+URL_SERVER = config('URL_SERVER', default='http://localhost:8000')
+
 ALLOWED_HOSTS = [
     host.strip() for host in allowed_hosts if host.strip()  # Filtrar hosts vacíos
 ]
@@ -43,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Apps internas
     'core',
+    'multimedia_manager',
+    'django_ckeditor_5',
 
     # Dependencias externas
     'rest_framework',
@@ -130,7 +134,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
