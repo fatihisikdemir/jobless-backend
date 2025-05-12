@@ -1,0 +1,44 @@
+# Entorno virtual
+venv/
+.env
+.env.*
+
+# Archivos de configuración personal
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.swp
+*.swo
+
+# Archivos de logs
+*.log
+
+# Archivos de base de datos (opcional si no versionás sqlite)
+*.sqlite3
+db.sqlite3
+
+# Django migrations
+**/migrations/
+**/migrations/*.pyc
+**/migrations/*.py
+
+# Archivos de editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Archivos temporales de sistema
+.DS_Store
+Thumbs.db
+
+# Node (si usás npm para scripts o front embebido)
+node_modules/
+
+# Archivos de pruebas
+.coverage
+htmlcov/
+pytest_cache/
+.tox/
+.cache/
