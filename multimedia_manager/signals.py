@@ -29,7 +29,7 @@ def eliminar_imagenes_antes_actualizacion(sender, instance, **kwargs):
                 for path in paths:
                     if path and os.path.exists(path):
                         os.remove(path)
-                        print(f"🗑️ Eliminado: {path}")
+                        logger.info(f"🗑️ Eliminado: {path}")
 
         except MediaFile.DoesNotExist:
             pass  # Si no existe, no hay nada que borrar
