@@ -38,6 +38,11 @@ jobs:
         run: |
           python manage.py migrate --noinput
 
+      # 🧪 Cargar datos de prueba
+      - name: Agregar datos de prueba
+        run: |
+          python manage.py seed_admin
+
       # (Opcional) 🧪 Agregar tests más adelante
       # - name: 🔬 Correr tests
       #   run: |
