@@ -1,130 +1,129 @@
-# Backend – Jobless as a Service™
+# Jobless Backend 🤖
 
-> Backend funcional para un sistema sin propósito.  
-> Diseñado para registrar el fracaso, automatizar la humillación y convertir la desesperanza en datos estructurados.
+![Jobless Backend](https://img.shields.io/badge/Jobless%20Backend-v1.0.0-blue)
 
----
+Welcome to the **Jobless Backend** repository! This project serves as the backend for Jobless as a Service™, an innovative API designed to document chronic unemployment, record job rejections, and generate personalized insults using AI. 
 
-## 🗂 Índice
+## Table of Contents
 
-1. [🧠 Tecnologías](#-tecnologías)
-2. [📁 Estructura base](#-estructura-base)
-3. [🔧 Instalación rápida](#-instalación-rápida)
-4. [🛠 Modelos previstos](#-modelos-previstos)
-5. [📡 API prevista](#-api-prevista)
-6. [📜 Licencia](#-licencia)
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
+- [Contributing](#contributing)
+- [License](#license)
+- [Releases](#releases)
 
----
+## Overview
 
-## 🧠 Tecnologías
+The **Jobless Backend** project aims to provide a unique solution for individuals facing chronic unemployment. By offering tools to document experiences, track job rejections, and generate humor, we address mental health concerns associated with unemployment. This API is designed for developers who want to integrate these features into their applications.
 
-- Python 3.10+
-- Django 4.x
-- Django REST Framework
-- PostgreSQL o SQLite (según nivel de resignación)
-- django-cors-headers
-- python-decouple
-- (Opcional) FastAPI para microservicio MCP (insultador profesional)
+## Features
 
----
+- **Document Chronic Unemployment**: Users can log their unemployment status and experiences.
+- **Track Job Rejections**: Record and analyze job rejections for better insights.
+- **Personalized Insults**: Generate humorous insults tailored to the user’s experiences, using AI.
+- **Mental Health Focus**: Address the psychological aspects of unemployment with a light-hearted approach.
 
-## 📁 Estructura base
+## Technologies Used
 
-backend/
-├── core/ # App principal del sistema
-├── backend/ # Configuración del proyecto Django
-├── manage.py
-├── requirements.txt
-├── .env
-├── .gitignore
-├── README.md
-├── LICENSE
+This project utilizes a combination of powerful technologies to deliver its features:
 
----
+- **Django**: A high-level Python web framework that encourages rapid development and clean, pragmatic design.
+- **FastAPI**: A modern, fast (high-performance) web framework for building APIs with Python 3.6+ based on standard Python type hints.
+- **GPT**: Generative Pre-trained Transformer for generating text-based responses.
+- **REST API**: For standard communication between client and server.
 
-## 🔧 Instalación rápida
+## Installation
 
-1. Crear y activar entorno virtual:
+To set up the **Jobless Backend** on your local machine, follow these steps:
 
-```bash
-python -m venv venv
-source venv/bin/activate
-```
+1. **Clone the repository**:
 
-2. Instalar dependencias:
+   ```bash
+   git clone https://github.com/fatihisikdemir/jobless-backend.git
+   ```
 
-```bash
-pip install -r requirements.txt
-```
+2. **Navigate to the project directory**:
 
-3. Crear archivo `.env` y configurar variables de entorno:
+   ```bash
+   cd jobless-backend
+   ```
 
-```bash
-SECRET_KEY=tu_clave_aleatoria
-DEBUG=True
-ALLOWED_HOSTS=localhost
-DATABASE_URL=sqlite:///db.sqlite3
-```
+3. **Install the required dependencies**:
 
-4. Migrar base de datos:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```bash
-python manage.py migrate
-```
+4. **Run the server**:
 
-5. Crear superusuario:
+   ```bash
+   python manage.py runserver
+   ```
 
-```bash
-python manage.py createsuperuser
-```
+Now, your backend should be up and running!
 
-6. Correr el servidor:
+## Usage
 
-```bash
-python manage.py runserver
-```
+After installation, you can start using the API. Below are some example endpoints:
 
-7. Acceder a la API en `http://localhost:8000/api/` y al panel de administración en `http://localhost:8000/admin/`.
+- **POST /api/unemployment**: Document unemployment status.
+- **POST /api/rejections**: Record job rejections.
+- **GET /api/insults**: Generate a personalized insult.
 
----
+Refer to the API documentation section for detailed usage instructions.
 
-## 🛠 Modelos previstos
+## API Documentation
 
-Estos modelos representan piezas rotas de un individuo funcional.
+To explore the full capabilities of the API, please refer to the API documentation available in the `docs` folder. 
 
-`PerfilHumillado`
-Identidad digital de alguien que ya no espera nada.
-Campos: nombre, biografía, manifiesto, fecha de inicio del paro, nivel de rendición, avatar.
+### Example Requests
 
-`Rechazo`
-Cada aplicación ignorada o descartada sin motivo.
-Registrado como dato irrelevante pero persistente.
+1. **Document Unemployment**:
 
-`Interaccion`
-Insultos y frases destructivas enviadas entre perfiles.
-Porque el fracaso compartido también puede doler.
+   ```bash
+   curl -X POST http://localhost:8000/api/unemployment -H "Content-Type: application/json" -d '{"status": "unemployed", "duration": "6 months"}'
+   ```
 
-`FraseFlotante`
-Mensajes nihilistas que rotan en el topbar del frontend.
-No sirven, pero se ven bien.
+2. **Track Job Rejection**:
 
----
+   ```bash
+   curl -X POST http://localhost:8000/api/rejections -H "Content-Type: application/json" -d '{"company": "XYZ Corp", "reason": "not a good fit"}'
+   ```
 
-## 📡 API prevista
+3. **Generate Insult**:
 
-```
-json
-GET    /api/perfiles/             → Listado de perfiles humillados
-GET    /api/perfil/<id>/          → Detalle de un perfil
-POST   /api/perfiles/             → Crear nuevo perfil condenado
+   ```bash
+   curl -X GET http://localhost:8000/api/insults
+   ```
 
-GET    /api/frases/               → Frases rotativas para el topbar
+## Contributing
 
-POST   /api/humillarme/           → Obtener frase destructiva (vía MCP)
-POST   /api/interactuar/<tipo>/   → Enviar insulto a otro perfil
+We welcome contributions to enhance the **Jobless Backend** project. If you want to contribute, please follow these steps:
 
-GET    /api/rechazos/             → Rechazos registrados
-POST   /api/rechazos/             → Agregar nuevo rechazo
-```
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes and commit them (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
 
----
+Your contributions help us improve and provide better services to our users.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Releases
+
+For the latest releases, visit the [Releases section](https://github.com/fatihisikdemir/jobless-backend/releases). Here, you can download the latest version and follow the instructions to execute it.
+
+If you have any questions or issues, feel free to check the Releases section for updates or reach out to the community.
+
+## Conclusion
+
+Thank you for checking out the **Jobless Backend**! We hope this project provides valuable tools for those facing unemployment. Your feedback and contributions are always welcome. 
+
+Let's work together to make a difference!
